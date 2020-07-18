@@ -1,12 +1,13 @@
 import axios from 'axios';
 import https from 'https';
+import { resourceUri } from './vars';
 
-const proxyAxios = axios.create({
-  // baseURL: resourceUri,
+const apiAxios = axios.create({
+  baseURL: resourceUri,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
     keepAlive: true,
   }),
 });
 
-export default proxyAxios;
+export default apiAxios;
