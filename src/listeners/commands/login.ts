@@ -1,9 +1,8 @@
-import { SlashCommand, SayFn } from '@slack/bolt';
+import { SlackCommandMiddlewareArgs, App } from '@slack/bolt';
 
 export default async (
-  subCommand: string,
-  command: SlashCommand,
-  say: SayFn
+  app: App,
+  ctx: SlackCommandMiddlewareArgs
 ): Promise<void> => {
-  await say(`from ${subCommand}`);
+  //
 };

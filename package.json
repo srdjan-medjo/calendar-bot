@@ -17,6 +17,7 @@
   "author": "Srdjan Medjo <srdjan.medjo@klika.ba>",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@slack/bolt": "^2.1.1",
     "axios": "^0.19.2",
     "date-fns": "^2.14.0",
