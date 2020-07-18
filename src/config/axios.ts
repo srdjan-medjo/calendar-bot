@@ -1,8 +1,8 @@
 import axios from 'axios';
 import https from 'https';
-import { resourceUri } from './vars';
+import { resourceUri, slackUri } from './vars';
 
-const apiAxios = axios.create({
+export const calendarApi = axios.create({
   baseURL: resourceUri,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
@@ -10,4 +10,10 @@ const apiAxios = axios.create({
   }),
 });
 
-export default apiAxios;
+export const slackApi = axios.create({
+  baseURL: slackUri,
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+    keepAlive: true,
+  }),
+});

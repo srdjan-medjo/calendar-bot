@@ -8,4 +8,5 @@ dotenv.config({
 export const slackSecret = process.env.SLACK_SIGNING_SECRET as string;
 export const slackToken = process.env.SLACK_BOT_TOKEN as string;
 export const resourceUri = process.env.RESOURCE_URI as string;
+export const slackUri = process.env.SLACK_URI as string;
 export const port = (process.env.PORT || '3000') as string;
