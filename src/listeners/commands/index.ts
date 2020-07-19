@@ -1,6 +1,8 @@
 import { App } from '@slack/bolt';
-import login from './login';
-import stats from './absences';
+import stats from './kc/stats';
+import help from './kc/help';
+import vacation from './kc/vacation';
+import religiousDays from './kc/religiousDays';
 import { slackToken } from '../../config/vars';
 
 interface KCSubCommands {
@@ -10,11 +12,13 @@ interface KCSubCommands {
 export default (app: App): void => {
   app.command('/kc', async ctx => {
     const { ack, command } = ctx;
-    await ack();
+    ack();
 
     const subCommands: KCSubCommands = {
-      login,
       stats,
+      help,
+      vacation,
+      religious_days: religiousDays,
     };
 
     const separatorIndex = command.text.indexOf(' ');
@@ -24,9 +28,9 @@ export default (app: App): void => {
       subCommand = command.text.substring(0, separatorIndex);
     else subCommand = command.text;
 
-    if (subCommands[subCommand]) await subCommands[subCommand](app, ctx);
+    if (subCommands[subCommand]) subCommands[subCommand](app, ctx);
     else
-      await app.client.chat.postEphemeral({
+      app.client.chat.postEphemeral({
         token: slackToken,
         channel: command.channel_id,
         text: "That command doesn't exist",

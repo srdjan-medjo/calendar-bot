@@ -1,8 +1,12 @@
 import { SlackCommandMiddlewareArgs, App } from '@slack/bolt';
-import { slackToken } from '../../config/vars';
-import store from '../../store';
-import { usersActions } from '../../store/reducers/users';
-import { getStats, getUsers } from '../../services/calendar/absences';
+import { slackToken } from '../../../config/vars';
+import store from '../../../store';
+import { usersActions } from '../../../store/reducers/users';
+import {
+  getStats,
+  getUsers,
+  getUserById,
+} from '../../../services/calendar/absences';
 
 export default async (
   app: App,
@@ -15,16 +19,15 @@ export default async (
     user: command.user_id,
   });
 
-  console.log('userInfo', userInfo);
-
-  store.dispatch(usersActions.setUserInfo(userInfo.user));
-  console.log('store.getState()', store.getState());
   const userEmail = userInfo.user.profile.email;
 
   //get all users from cal api (which will be based on scope)
   // so we can pull userId
   const { data: users } = await getUsers(userEmail, {});
   const userId = users.find((user: any) => user.email === userEmail).id;
+
+  const { data: user } = await getUserById(userEmail, userId, {});
+  console.log('user', user);
 
   // use userId to get stats
   const { data: stats } = await getStats(userEmail, {
@@ -38,9 +41,24 @@ export default async (
   const result = await app.client.chat.postEphemeral({
     token: slackToken,
     channel: command.channel_id,
+    blocks: [
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: `
+                Vacation: ${stats.statistics[3].activeDays}
+                `,
+        },
+      },
+    ],
     text: `stats here`,
     user: command.user_id,
   });
 
   console.log('result', result);
 };
+
+// total: lastYearDays + currentYearDays
+// used:10 used = active days for absence type 1
+//18 left = current year left + last year left

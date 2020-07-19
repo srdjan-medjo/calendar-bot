@@ -3,11 +3,13 @@ import { port } from './config/vars';
 import messages from './listeners/messages';
 import events from './listeners/events';
 import commands from './listeners/commands';
+import actions from './listeners/actions';
 
 // listeners
 messages(app);
 events(app);
 commands(app);
+actions(app);
 
 // error handler
 app.error((error): any => {
