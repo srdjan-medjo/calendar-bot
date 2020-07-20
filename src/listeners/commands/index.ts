@@ -39,6 +39,25 @@ export default (app: App): void => {
       app.client.chat.postEphemeral({
         token: slackToken,
         channel: command.channel_id,
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: '*CalBot :: Not Found* :no_entry_sign:',
+            },
+          },
+          {
+            type: 'divider',
+          },
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: 'That command does not exist',
+            },
+          },
+        ],
         text: "That command doesn't exist",
         user: command.user_id,
       });
