@@ -1,17 +1,17 @@
 import { App } from '@slack/bolt';
-import statsView from '../views/statsModal';
+import { app } from '../../../config/bolt';
+import calendarView from '../../../views/calendarOptionsModal';
 
 export default (app: App): void => {
-  app.shortcut('stats_modal', async ({ payload, ack, context }) => {
+  app.shortcut('calendar', async ({ payload, ack, context }) => {
     ack();
 
     try {
       const result = await app.client.views.open({
         token: context.botToken,
         trigger_id: payload.trigger_id,
-        view: statsView(),
+        view: calendarView(),
       });
-
       console.log(result);
     } catch (error) {
       console.error(error);

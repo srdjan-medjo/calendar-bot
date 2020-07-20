@@ -11,6 +11,7 @@ events(app);
 commands(app);
 actions(app);
 
+console.log('app', app);
 // error handler
 app.error((error): any => {
   console.error(error);

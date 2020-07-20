@@ -2,6 +2,7 @@ import { App } from '@slack/bolt';
 import stats from './kc/stats';
 import help from './kc/help';
 import vacation from './kc/vacation';
+import info from './kc/info';
 import religiousDays from './kc/religiousDays';
 import { slackToken } from '../../config/vars';
 import wfh from './kc/wfh';
@@ -19,8 +20,9 @@ export default (app: App): void => {
       stats,
       help,
       vacation,
-      religiousDays,
       wfh,
+      religious_days: religiousDays,
+      info,
     };
 
     const separatorIndex = command.text.indexOf(' ');
