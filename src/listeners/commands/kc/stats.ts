@@ -44,9 +44,10 @@ export default async (
   const totalReligiousDays = '4';
   const leftReligiousDays = user.religiousDaysLeft;
   const wfhData = stats.statistics.find(
-    (item: any) => item.absenceTypeId === absenceIds.WORK_FROM_HOME);
-  const wfhCurrentMonth = wfhData.activeDaysCurrentMonth;
-  const wfhAverage = wfhData.averagePerMonth;
+    (item: any) => item.absenceTypeId === absenceIds.WORK_FROM_HOME
+  );
+  const wfhCurrentMonth = wfhData?.activeDaysCurrentMonth || 0;
+  const wfhAverage = wfhData?.averagePerMonth || 0;
 
   // post result to slack as ephemeral msg
   const result = await app.client.chat.postEphemeral({
@@ -100,4 +101,3 @@ export default async (
 
   console.log('result', result);
 };
-

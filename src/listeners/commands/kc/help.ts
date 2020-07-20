@@ -29,8 +29,9 @@ export default async (
             text:
               '*Vacation days data:* `/kc vacation`\n' +
               '*Religious days left:* `/kc religiousDays`\n' +
-              // '*Days of vacation left:* `/kc days_left`\n' +
-              '*WFH data:* `/kc wfh_days`\n',
+              '*WFH data:* `/kc wfh`\n' +
+              '*Stats:*`/kc stats`',
+            // '*Days of vacation left:* `/kc days_left`\n' +
             // '*Next planned vacation:* `/kc next_vacation`\n',
           },
         },
