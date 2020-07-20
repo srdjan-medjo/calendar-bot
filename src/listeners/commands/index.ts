@@ -11,19 +11,18 @@ interface KCSubCommands {
   [char: string]: any;
 }
 
+export const subCommands: KCSubCommands = {
+  stats,
+  help,
+  vacation,
+  religious_days: religiousDays,
+  info,
+};
+
 export default (app: App): void => {
   app.command('/kc', async ctx => {
     const { ack, command } = ctx;
     ack();
-
-    const subCommands: KCSubCommands = {
-      stats,
-      help,
-      vacation,
-      wfh,
-      religious_days: religiousDays,
-      info,
-    };
 
     const separatorIndex = command.text.indexOf(' ');
     let subCommand: string;
@@ -31,6 +30,8 @@ export default (app: App): void => {
     if (separatorIndex !== -1)
       subCommand = command.text.substring(0, separatorIndex);
     else subCommand = command.text;
+
+    console.log('subCommands', subCommands);
 
     if (subCommands[subCommand]) subCommands[subCommand](app, ctx);
     else
