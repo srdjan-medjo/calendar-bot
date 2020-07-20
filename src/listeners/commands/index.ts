@@ -17,6 +17,7 @@ export const subCommands: KCSubCommands = {
   vacation,
   religious_days: religiousDays,
   info,
+  wfh,
 };
 
 export default (app: App): void => {
