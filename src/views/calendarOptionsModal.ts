@@ -1,5 +1,5 @@
 import { selectOptions } from '../utils/helpers';
-import { subCommands } from '../listeners/commands';
+import { subCommands } from '../listeners/commands/kc';
 
 export default (): any => ({
   type: 'modal',

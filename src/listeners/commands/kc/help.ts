@@ -27,7 +27,7 @@ export default async (
           text: {
             type: 'mrkdwn',
             text:
-              '*Stats:*`/kc stats`\n' +
+              '*Stats:* `/kc stats`\n' +
               '*Vacation days data:* `/kc vacation`\n' +
               '*Religious days left:* `/kc religious_days`\n' +
               '*WFH data:* `/kc wfh`\n',

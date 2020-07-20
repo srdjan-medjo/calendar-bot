@@ -3,7 +3,7 @@ import { app } from '../../../config/bolt';
 import calendarView from '../../../views/calendarOptionsModal';
 import store from '../../../store';
 import { usersActions } from '../../../store/reducers/users';
-import { subCommands } from '../../commands';
+import { subCommands } from '../../commands/kc';
 import stats from '../../commands/kc/stats';
 import help from '../../commands/kc/help';
 import vacation from '../../commands/kc/vacation';
