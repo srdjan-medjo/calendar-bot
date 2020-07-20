@@ -1,5 +1,6 @@
 import { App } from '@slack/bolt';
-import statsView from '../views/statsModal';
+import { app } from '../../../config/bolt';
+import statsView from '../../../views/statsModal';
 
 export default (app: App): void => {
   app.shortcut('stats_modal', async ({ payload, ack, context }) => {
@@ -11,7 +12,6 @@ export default (app: App): void => {
         trigger_id: payload.trigger_id,
         view: statsView(),
       });
-
       console.log(result);
     } catch (error) {
       console.error(error);
