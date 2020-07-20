@@ -16,7 +16,7 @@ export default async (
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: '*CalBot :: Help*',
+            text: '*CalBot :: Help* :sos:',
           },
         },
         {
@@ -28,9 +28,9 @@ export default async (
             type: 'mrkdwn',
             text:
               '*Vacation days data:* `/kc vacation`\n' +
-              '*Religious days left:* `/kc religiousDays`\n',
-            // '*Days of vacation left:* `/kc days_left`\n' +
-            // '*WFH data:* `/kc wfh_days`\n' +
+              '*Religious days left:* `/kc religiousDays`\n' +
+              // '*Days of vacation left:* `/kc days_left`\n' +
+              '*WFH data:* `/kc wfh_days`\n',
             // '*Next planned vacation:* `/kc next_vacation`\n',
           },
         },

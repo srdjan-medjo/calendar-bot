@@ -4,6 +4,7 @@ import help from './kc/help';
 import vacation from './kc/vacation';
 import religiousDays from './kc/religiousDays';
 import { slackToken } from '../../config/vars';
+import wfh from './kc/wfh';
 
 interface KCSubCommands {
   [char: string]: any;
@@ -18,7 +19,8 @@ export default (app: App): void => {
       stats,
       help,
       vacation,
-      religious_days: religiousDays,
+      religiousDays,
+      wfh,
     };
 
     const separatorIndex = command.text.indexOf(' ');

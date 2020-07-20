@@ -29,7 +29,7 @@ export default async (
 
     const { data: stats } = await getStats(userEmail, {
       userId: userId,
-      year: 2020,
+      year: new Date().getFullYear(),
     });
     console.log('stats', stats);
 
@@ -49,7 +49,7 @@ export default async (
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: '*CalBot :: Vacation*',
+            text: '*CalBot :: Vacation* :beach_with_umbrella:',
           },
         },
         {
@@ -59,7 +59,7 @@ export default async (
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `From *${totalVacationDays}* total vacation days, you have used *${usedVacationDays}* days and have *${leftVacationDays}* days left`,
+            text: `From *${totalVacationDays}* total vacation days, you have used *${usedVacationDays}* days and have *${leftVacationDays}* days left.`,
           },
         },
       ],

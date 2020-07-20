@@ -29,7 +29,7 @@ export default async (
 
     const { data: stats } = await getStats(userEmail, {
       userId: userId,
-      year: 2020,
+      year: new Date().getFullYear(),
     });
     console.log('stats', stats);
 
@@ -46,7 +46,7 @@ export default async (
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: '*CalBot :: Religious Days*',
+            text: '*CalBot :: Religious Days* :synagogue: :mosque: :church: ',
           },
         },
         {
@@ -56,20 +56,11 @@ export default async (
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `From *${totalReligiousDays}* days total for this year, you now have *${leftReligiousDays}* days left. `,
+            text: `From *${totalReligiousDays}* religious days for this year, you now have *${leftReligiousDays}* days left. `,
           },
         },
-        {
-          type: 'context',
-          elements: [
-            {
-              type: 'mrkdwn',
-              text: `Keep in mind first 2 days are free, for other 2 you need to use your vacation`,
-            },
-          ],
-        },
       ],
-      text: 'kc vacation',
+      text: 'kc religiousDays',
       user: command.user_id,
     });
   } catch (error) {

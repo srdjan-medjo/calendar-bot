@@ -35,19 +35,10 @@ export default async (
   });
 
   console.log('stats', stats);
-  const totalVacationDays = user.lastYearDays + user.currentYearDays;
-  const usedVacationDays = stats.statistics.find(
-    (item: any) => item.absenceTypeId === absenceIds.VACATION
-  ).activeDays;
-  const leftVacationDays = user.currentYearDaysLeft + user.lastYearDaysLeft;
-  // calculate days for showing
-  const totalReligiousDays = '4';
-  const leftReligiousDays = user.religiousDaysLeft;
   const wfhData = stats.statistics.find(
     (item: any) => item.absenceTypeId === absenceIds.WORK_FROM_HOME);
   const wfhCurrentMonth = wfhData.activeDaysCurrentMonth;
   const wfhAverage = wfhData.averagePerMonth;
-
   // post result to slack as ephemeral msg
   const result = await app.client.chat.postEphemeral({
     token: slackToken,
@@ -57,27 +48,7 @@ export default async (
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '*CalBot :: Stats* :date:',
-        },
-      },
-      {
-        type: 'divider',
-      },
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `From *${totalVacationDays}* total vacation days, you have used *${usedVacationDays}* days and have *${leftVacationDays}* days left.`,
-        },
-      },
-      {
-        type: 'divider',
-      },
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `From *${totalReligiousDays}* religious days for this year, you now have *${leftReligiousDays}* days left. `,
+          text: '*CalBot :: Work From Home* :computer:',
         },
       },
       {
@@ -90,11 +61,8 @@ export default async (
           text: `You have used *${wfhCurrentMonth}* WFH days in this month. \n On average you use *${wfhAverage}* WFH days per month.`,
         },
       },
-      {
-        type: 'divider',
-      },
     ],
-    text: `stats here`,
+    text: `kc wfh`,
     user: command.user_id,
   });
 
