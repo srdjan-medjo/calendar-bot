@@ -1,5 +1,5 @@
 import { App } from '@slack/bolt';
-import homeView from '../views/home';
+import homeView from '../views/homeView/home';
 
 export default (app: App): void => {
   app.event('app_home_opened', async ({ payload, context }) => {

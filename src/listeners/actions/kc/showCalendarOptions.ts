@@ -1,6 +1,6 @@
 import { App } from '@slack/bolt';
 import { app } from '../../../config/bolt';
-import calendarView from '../../../views/calendarOptionsModal';
+import calendarView from '../../../views/modalViews/calendarOptionsModal';
 import store from '../../../store';
 import { usersActions } from '../../../store/reducers/users';
 import { subCommands } from '../../commands/kc';
