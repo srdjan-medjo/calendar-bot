@@ -46,7 +46,6 @@ export default (app: App): void => {
 
   app.action('select_calendar_action', async ({ payload, ack, context }) => {
     ack();
-
     const payload2: any = payload;
     try {
       value = payload2.selected_option.value;
