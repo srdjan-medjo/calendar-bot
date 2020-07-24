@@ -9,6 +9,7 @@ import { absenceIds } from '../../../utils/constants';
 import blocksFactory from '../../../views/blocksViews/blocksFactory';
 import { wfhBlock } from '../../../views/blocksViews/blocksData';
 import wfhController from '../../../controllers/kc/wfh';
+import textFactory from '../../../views/textFactory';
 
 export default async (
   app: App,
@@ -22,7 +23,7 @@ export default async (
     token: slackToken,
     channel: command.channel_id,
     blocks: blocksFactory(wfh.header, wfh.icon, wfh.text),
-    text: `kc wfh`,
+    text: textFactory('Wfh'),
     user: command.user_id,
   });
 

@@ -3,7 +3,7 @@ export const statsBlocks = (vacation: any, religiousDays: any, wfh: any) => [
     type: 'section',
     text: {
       type: 'mrkdwn',
-      text: '*CalBot :: Stats* :date:',
+      text: '*KC :: Stats* :date:',
     },
   },
   {

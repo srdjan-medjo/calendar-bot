@@ -9,6 +9,7 @@ import { absenceIds } from '../../../utils/constants';
 import blocksFactory from '../../../views/blocksViews/blocksFactory';
 import { religiousBlock } from '../../../views/blocksViews/blocksData';
 import religiousDaysController from '../../../controllers/kc/religiousDays';
+import textFactory from '../../../views/textFactory';
 
 export default async (
   app: App,
@@ -31,7 +32,7 @@ export default async (
         religiousDays.icon,
         religiousDays.text
       ),
-      text: 'kc religiousDays',
+      text: textFactory('Religious Days'),
       user: command.user_id,
     });
   } catch (error) {

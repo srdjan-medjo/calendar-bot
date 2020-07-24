@@ -10,6 +10,7 @@ import vacationController from '../../../controllers/kc/vacation';
 import wfhController from '../../../controllers/kc/wfh';
 import religiousDaysController from '../../../controllers/kc/religiousDays';
 import { statsBlocks } from '../../../views/blocksViews/statsBlocks';
+import textFactory from '../../../views/textFactory';
 
 export default async (
   app: App,
@@ -26,7 +27,7 @@ export default async (
     token: slackToken,
     channel: command.channel_id,
     blocks: statsBlocks(vacation, religiousDays, wfh),
-    text: `stats here`,
+    text: textFactory('Stats'),
     user: command.user_id,
   });
 

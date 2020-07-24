@@ -6,6 +6,7 @@ import religiousDays from './religiousDays';
 import { slackToken } from '../../../config/vars';
 import wfh from './wfh';
 import blocksFactory from '../../../views/blocksViews/blocksFactory';
+import textFactory from '../../../views/textFactory';
 
 export interface KCSubCommands {
   [char: string]: any;
@@ -40,10 +41,10 @@ export default (app: App): void => {
         channel: command.channel_id,
         blocks: blocksFactory(
           'Not Found',
-          ':no_entry_sign',
+          ':no_entry_sign:',
           'That command does not exist, please try with `/kc help`'
         ),
-        text: "That command doesn't exist",
+        text: textFactory("That command doesn't exist"),
         user: command.user_id,
       });
   });

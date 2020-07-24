@@ -9,6 +9,7 @@ import { absenceIds } from '../../../utils/constants';
 import blocksFactory from '../../../views/blocksViews/blocksFactory';
 import { vacationBlock } from '../../../views/blocksViews/blocksData';
 import vacationController from '../../../controllers/kc/vacation';
+import textFactory from '../../../views/textFactory';
 
 export default async (
   app: App,
@@ -24,7 +25,7 @@ export default async (
       token: slackToken,
       channel: command.channel_id,
       blocks: blocksFactory(vacation.header, vacation.icon, vacation.text),
-      text: 'kc vacation',
+      text: textFactory('Vacation'),
       user: command.user_id,
     });
   } catch (error) {

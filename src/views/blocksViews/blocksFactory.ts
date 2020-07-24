@@ -1,7 +1,4 @@
-interface KCBlocksFactory {
-  type: string;
-  text?: Record<string, unknown>;
-}
+import { KCBlocksFactory } from '../types';
 
 export default (
   header: string,
@@ -13,7 +10,7 @@ export default (
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: `*CalBot :: ${header}* ${icon}`,
+        text: `*KC :: ${header}* ${icon}`,
       },
     },
     {

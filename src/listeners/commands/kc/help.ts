@@ -2,6 +2,7 @@ import { SlackCommandMiddlewareArgs, App } from '@slack/bolt';
 import { slackToken } from '../../../config/vars';
 import blocksFactory from '../../../views/blocksViews/blocksFactory';
 import { helpBlock } from '../../../views/blocksViews/blocksData';
+import textFactory from '../../../views/textFactory';
 
 export default async (
   app: App,
@@ -15,7 +16,7 @@ export default async (
       token: slackToken,
       channel: command.channel_id,
       blocks: blocksFactory(help.header, help.icon, help.text),
-      text: 'kc help',
+      text: textFactory('Help'),
       user: command.user_id,
     });
   } catch (error) {

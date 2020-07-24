@@ -21,6 +21,8 @@ import wfhController from '../../../controllers/kc/wfh';
 import religiousDaysController from '../../../controllers/kc/religiousDays';
 import vacationController from '../../../controllers/kc/vacation';
 import { statsBlocks } from '../../../views/blocksViews/statsBlocks';
+import { capitalize } from '../../../utils/helpers';
+import textFactory from '../../../views/textFactory';
 
 export default (app: App): void => {
   let value = '';
@@ -81,7 +83,7 @@ export default (app: App): void => {
         token: ctx.context.botToken,
         channel: userId,
         blocks: selectOptions[value],
-        text: 'kc vacation',
+        text: textFactory(capitalize(value)),
         user: userId,
       });
     } catch (error) {
