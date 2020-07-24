@@ -6,6 +6,10 @@ import {
   getUserById,
 } from '../../../services/calendar/absences';
 import { absenceIds } from '../../../utils/constants';
+import blocksFactory from '../../../views/blocksViews/blocksFactory';
+import { religiousBlock } from '../../../views/blocksViews/blocksData';
+import religiousDaysController from '../../../controllers/kc/religiousDays';
+import textFactory from '../../../views/textFactory';
 
 export default async (
   app: App,
@@ -14,53 +18,21 @@ export default async (
   const { command } = ctx;
 
   try {
-    // fetch necessary stuff
-    const userInfo: any = await app.client.users.info({
-      token: slackToken,
-      user: command.user_id,
-    });
-    const userEmail = userInfo.user.profile.email;
-
-    const { data: users } = await getUsers(userEmail, {});
-    const userId = users.find((user: any) => user.email === userEmail).id;
-
-    const { data: user } = await getUserById(userEmail, userId, {});
-    console.log('user', user);
-
-    const { data: stats } = await getStats(userEmail, {
-      userId: userId,
-      year: new Date().getFullYear(),
-    });
-    console.log('stats', stats);
-
-    // calculate days for showing
-    const totalReligiousDays = '4';
-    const leftReligiousDays = user.religiousDaysLeft;
+    const { religiousDays } = await religiousDaysController(
+      app,
+      command.user_id
+    );
 
     // show ephemeral msg
     await app.client.chat.postEphemeral({
       token: slackToken,
       channel: command.channel_id,
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*CalBot :: Religious Days* :synagogue: :mosque: :church: ',
-          },
-        },
-        {
-          type: 'divider',
-        },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `From *${totalReligiousDays}* religious days for this year, you now have *${leftReligiousDays}* days left. `,
-          },
-        },
-      ],
-      text: 'kc religiousDays',
+      blocks: blocksFactory(
+        religiousDays.header,
+        religiousDays.icon,
+        religiousDays.text
+      ),
+      text: textFactory('Religious Days'),
       user: command.user_id,
     });
   } catch (error) {

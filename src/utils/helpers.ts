@@ -13,8 +13,10 @@ export const convertToLabel = (string: string): string => {
 };
 
 export const selectOptions = (data: any): KCSelectOptions[] => {
-  return Object.keys(data).map(key => ({
-    label: convertToLabel(key),
-    value: key,
-  }));
+  return Object.keys(data)
+    .map(key => ({
+      label: convertToLabel(key),
+      value: key,
+    }))
+    .filter(item => item.value !== 'help');
 };

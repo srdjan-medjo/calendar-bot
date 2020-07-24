@@ -2,12 +2,13 @@ import { App } from '@slack/bolt';
 import stats from './stats';
 import help from './help';
 import vacation from './vacation';
-import info from './info';
 import religiousDays from './religiousDays';
 import { slackToken } from '../../../config/vars';
 import wfh from './wfh';
+import blocksFactory from '../../../views/blocksViews/blocksFactory';
+import textFactory from '../../../views/textFactory';
 
-interface KCSubCommands {
+export interface KCSubCommands {
   [char: string]: any;
 }
 
@@ -16,7 +17,6 @@ export const subCommands: KCSubCommands = {
   help,
   vacation,
   religious_days: religiousDays,
-  info,
   wfh,
 };
 
@@ -39,26 +39,12 @@ export default (app: App): void => {
       app.client.chat.postEphemeral({
         token: slackToken,
         channel: command.channel_id,
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: '*CalBot :: Not Found* :no_entry_sign:',
-            },
-          },
-          {
-            type: 'divider',
-          },
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: 'That command does not exist, please try with `/kc help`',
-            },
-          },
-        ],
-        text: "That command doesn't exist",
+        blocks: blocksFactory(
+          'Not Found',
+          ':no_entry_sign:',
+          'That command does not exist, please try with `/kc help`'
+        ),
+        text: textFactory("That command doesn't exist"),
         user: command.user_id,
       });
   });
